@@ -8,31 +8,31 @@
 </head>
 <body>
 <Flagtext class='Flag'><titleimg style='float:left'><a href='index.html'><img src="../Images/Logo.png" style='width:40px;height:auto'1;></img></a></titleimg>
-<h1><a href='RegistrationPage.php' class='ResizingTitle'>LoginPage</a></h1></Flagtext>
-
-<div class='BodyTextBox'><div class='BodyTitle'></div><div class='mainTextHeader'>This is a PHP script to handle inputs from the index.</div><div class='mainText'>
+<h1><a href='../index.html' class='ResizingTitle'>Home</a></h1></Flagtext>
+<div id="swappableText">
+<div class='BodyTextBox'><div class='BodyTitle'></div><div class='mainTextHeader' id="mainTextHeader">This is a PHP script to handle inputs from the index.</div><div class='mainText' id="mainText">
 	Welcome <?php echo $_POST["username"]; ?><br><br>
 	Your password is: <?php echo $_POST["password"]; ?><br><br>
 
 	<?php if($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
-		echo "CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe<br><br>
+		echo "<!--CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe--><br><br>
 
-		MAIGNI GAHRIAGHGU the GIANIGN COMMMMMMMM
+		<!--MAIGNI GAHRIAGHGU the GIANIGN COMMMMMMMM-->
 ";
 
-	echo '<h1 id="testRenderBlock">fajlfkaj</h1>';
+	echo '<h1 id="testRenderBlock"></h1>';
 	echo '
 	<script>
 	function outputStuff(){
-	alert("potato!");
-	document.getElementById("testRenderBlock").innerHTML = "BLAAARGH";}
+	document.getElementById("mainTextHeader").innerHTML = "Console";
+	document.getElementById("mainText").innerHTML = "<br><br><br>This is where the form will be!";}
 	</script>
 
 	';
-	echo '<button type="button" onclick="outputStuff();">yeaaaaa</button>';
+	echo '<button type="button" onclick="outputStuff();">Enter Application</button>';
 
 	}
 ?>
-
+</div>
 </body>
 </html>
