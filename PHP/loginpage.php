@@ -18,13 +18,18 @@
 		echo "CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe<br><br>
 
 		MAIGNI GAHRIAGHGU the GIANIGN COMMMMMMMM
+";
 
-		<h1 id="testRenderBlock"></h1>
+	echo '<h1 id="testRenderBlock">fajlfkaj</h1>';
+	echo '
+	<script>
+	function outputStuff(){
+	alert("potato!");
+	document.getElementById("testRenderBlock").innerHTML = "BLAAARGH";}
+	</script>
 
-		<script src="../JS/renderPage.js"></script>
-
-
-		";
+	';
+	echo '<button type="button" onclick="outputStuff();">yeaaaaa</button>';
 
 	}
 ?>
