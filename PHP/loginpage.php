@@ -13,7 +13,13 @@
 <div class='BodyTextBox'><div class='BodyTitle'></div><div class='mainTextHeader'>This is a PHP script to handle inputs from the index.</div><div class='mainText'>
 	Welcome <?php echo $_POST["username"]; ?><br><br>
 	Your password is: <?php echo $_POST["password"]; ?><br><br>
+	<?php if($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
+		echo "CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe<br><br>
 
+		MAIGNI GAHRIAGHGU the GIANIGN COMMMMMMMM";
+
+	}
+?>
 
 </body>
 </html>
