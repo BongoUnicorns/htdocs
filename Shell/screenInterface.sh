@@ -2,7 +2,7 @@ echo hello! this is the script
 
 Token=$1
 String=$2
-String = '${String//"/}'
+String=${String//'"'/}
 
 echo $Token
 echo $String
