@@ -8,6 +8,10 @@ if [[ $String == "sDestroy" ]]; then
 	echo Destroyed Screen
 fi
 
+if [[ $String == "sDestroy" ]]; then
+	screen -S $Token -p 0 -X kill
+fi
+
 if [[ $Result == 1 ]]; then
 	echo Creating Screen
 	screen -dmS $Token bash
