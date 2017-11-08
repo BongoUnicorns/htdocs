@@ -21,7 +21,6 @@ if [[ $Result == 1 ]]; then
 
 	else echo Found screen!;
 	screen -S $Token -p 0 -X stuff "$String
-
 	"
 	screen -r $Token
 
