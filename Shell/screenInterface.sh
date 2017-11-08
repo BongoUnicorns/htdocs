@@ -10,6 +10,10 @@ screen -S $Token -X select . ; Result=$?
 
 echo $Result
 
+if [[ $String == "sDestroy" ]]; then
+	screen -S $Token -p 0 -X kill
+fi
+
 if [[ $Result == 1 ]]; then
 	echo creating screen
 	screen -dmS $Token bash
@@ -24,5 +28,5 @@ if [[ $Result == 1 ]]; then
 	else echo Found screen!;
 	screen -S $Token -p 0 -X stuff "$String
 	"
-
+	screen -r $Token
 fi
