@@ -1,4 +1,4 @@
-echo hello! this is the script
+echo Input processing.
 
 Token=$1
 String=$2
