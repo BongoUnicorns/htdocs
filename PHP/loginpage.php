@@ -23,7 +23,7 @@
 <div class='BodyTextBox'><div class='BodyTitle'><a href='/index.html'>Home</a></div>
 <div class='mainTextHeader' id="mainTextHeader">Application</div>
 <div class='mainText' id="mainText"></div>
-<div class='commandRead' id="commandRead"></div>
+<div class='commandRead' id="commandRead" style="display:none">FORM GOES HERE, JACK!!!!!!!!<br><br></div>
 	Welcome <?php echo $_POST["username"]; ?><br>
 	Your password is: <?php echo $_POST["password"]; ?><br><br>
 
@@ -40,8 +40,9 @@
 	<script>
 	function outputStuff(){
 	document.getElementById("mainTextHeader").innerHTML = "Console";
-	document.getElementById("mainText").innerHTML = "<br><br><br>This is where the form will be!";
-  document.getElementById("commandRead").innerHTML = "print this plz";}
+	document.getElementById("mainText").innerHTML = "<br>Enter Text Here<br><br>";
+
+	document.getElementById("commandRead").style.display = "block";}
 	</script>
 	';
 	echo '<button type="button" onclick="outputStuff();">Enter Application</button>';
