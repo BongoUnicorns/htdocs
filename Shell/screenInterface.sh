@@ -1,17 +1,15 @@
-echo Input processing.
-
 Token=$1
 String=$2
 String=${String//'"'/}
-
-echo $Token
-echo $String
 screen -S $Token -X select . ; Result=$?
 
-echo $Result
+if [[ $String == "sDestroy" ]]; then
+	screen -S $Token -p 0 -X kill
+	echo Destroyed Screen
+fi
 
 if [[ $Result == 1 ]]; then
-	echo creating screen
+	echo Creating Screen
 	screen -dmS $Token bash
 	screen -S $Token -p 0 -X stuff "cd
 	"
@@ -21,8 +19,8 @@ if [[ $Result == 1 ]]; then
 
 	screen -r $Token
 
-	else echo Found screen!;
+else echo Attaching Screen;
 	screen -S $Token -p 0 -X stuff "$String
 	"
-
+	screen -r $Token
 fi
