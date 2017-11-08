@@ -13,6 +13,8 @@ echo $Result
 if [[ $Result == 1 ]]; then
 	echo creating screen
 	screen -dmS $Token bash
+	screen -S $Token -p 0 -X stuff "cd
+	"
 	screen -S $Token -p 0 -X stuff "$String
 	"
 
@@ -22,6 +24,5 @@ if [[ $Result == 1 ]]; then
 	else echo Found screen!;
 	screen -S $Token -p 0 -X stuff "$String
 	"
-	screen -r $Token
 
 fi
