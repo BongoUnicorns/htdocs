@@ -1,5 +1,15 @@
 <html>
 <head>
+	<script>
+	function enterKeyListener(){
+		document.getElementById("commandToBeRun").addEventListener("keydown", function(e){
+			if (!e) {var e = window.event;}
+			e.preventDefault();
+
+			if (e.keyCode == 13) { submitFunction(); }
+		},	false);
+	</script>
+
 	<title>Remote Access Tool</title>
 		<style type="text/css">
 		</style>
@@ -10,7 +20,10 @@
 <Flagtext class='Flag'><titleimg style='float:left'><a href='/index.html'><img src="../Images/Logo.png" style='width:40px;height:auto'1;></img></a></titleimg>
 <h1><a href='../index.html' class='ResizingTitle'>Home</a></h1></Flagtext>
 <div id="swappableText">
-<div class='BodyTextBox'><div class='BodyTitle'><a href='/index.html'>Home</a></div><div class='mainTextHeader' id="mainTextHeader">Application</div><div class='mainText' id="mainText">
+<div class='BodyTextBox'><div class='BodyTitle'><a href='/index.html'>Home</a></div>
+<div class='mainTextHeader' id="mainTextHeader">Application</div>
+<div class='mainText' id="mainText"></div>
+<div class='commandRead' id="commandRead"></div>
 	Welcome <?php echo $_POST["username"]; ?><br>
 	Your password is: <?php echo $_POST["password"]; ?><br><br>
 
@@ -27,12 +40,11 @@
 	<script>
 	function outputStuff(){
 	document.getElementById("mainTextHeader").innerHTML = "Console";
-	document.getElementById("mainText").innerHTML = "<br><br><br>This is where the form will be!";}
+	document.getElementById("mainText").innerHTML = "<br><br><br>This is where the form will be!";
+  document.getElementById("commandRead").innerHTML = "print this plz";}
 	</script>
-
 	';
 	echo '<button type="button" onclick="outputStuff();">Enter Application</button>';
-
 	}
 ?>
 </div>
