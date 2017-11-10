@@ -13,7 +13,7 @@ if [[ $String == "sDestroy" ]]; then
 fi
 
 if [[ $Result == 1 ]]; then
-	//echo Creating Screen
+	#echo Creating Screen
 	screen -dmS $Token bash
 	mkfifo /tmp/fifoout
 	screen -S $Token -p 0 -X stuff "cd
@@ -28,11 +28,7 @@ if [[ $Result == 1 ]]; then
 
 	#screen -r $Token
 
-<<<<<<< HEAD
-else //echo Attaching Screen;
-=======
-else echo Attaching Screen;
->>>>>>> 78c56602ad2a4770de001d6af3f7ffd4bc882906
+else #echo Attaching Screen;
 	screen -S $Token -p 0 -X stuff "$String >/tmp/fifoout
 	"
 	sleep .05
