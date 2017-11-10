@@ -15,7 +15,6 @@ fi
 if [[ $Result == 1 ]]; then
 	echo Creating Screen
 	screen -dmS $Token bash
-	>/tmp/fifoout
 	mkfifo /tmp/fifoout
 	screen -S $Token -p 0 -X stuff "cd
 	"
@@ -25,15 +24,18 @@ if [[ $Result == 1 ]]; then
 
 	cat /tmp/fifoout
 
+	>/tmp/fifoout
+
 	#screen -r $Token
 
 else echo Attaching Screen;
-	>/tmp/fifoout
 	screen -S $Token -p 0 -X stuff "$String >/tmp/fifoout
 	"
 	sleep .05
 
 	cat /tmp/fifoout
+
+	>/tmp/fifoout
 
 	#screen -r $Token
 fi
