@@ -21,7 +21,8 @@ if [[ $Result == 1 ]]; then
 	"
 	screen -S $Token -p 0 -X stuff "$String >/tmp/fifoout
 	"
-	sleep .1
+	sleep .01
+
 	cat /tmp/fifoout
 
 	#screen -r $Token
@@ -30,7 +31,8 @@ else echo Attaching Screen;
 	>/tmp/fifoout
 	screen -S $Token -p 0 -X stuff "$String >/tmp/fifoout
 	"
-	sleep .1
+	sleep .01
+
 	cat /tmp/fifoout
 
 	#screen -r $Token
