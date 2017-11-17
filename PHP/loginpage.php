@@ -1,15 +1,5 @@
 <html>
 <head>
-	<script>
-	function enterKeyListener(event) {
-    if (event.which == 13 || event.keyCode == 13) {
-        //code to execute here
-				alert("HELLO");
-        return false;
-    }
-    return true;
-};
-	</script>
 
 	<title>Remote Access Tool</title>
 		<style type="text/css">
@@ -24,11 +14,19 @@
 <div class='BodyTextBox'><div class='BodyTitle'><a href='/index.html'>Home</a></div>
 <div class='mainTextHeader' id="mainTextHeader">Application</div>
 <div class='mainText' id="mainText"></div>
-<div class='commandRead' id="commandRead" style="display:none">FORM GOES HERE, JACK!!!!!!!!<br><br></div>
-	Welcome <?php echo $_POST["username"]; ?><br>
-	Your password is: <?php echo $_POST["password"]; ?><br><br>
 
-	<?php if($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
+
+	<?php
+	if(isset($_POST["commandToBeRun"])){
+		$input = $_POST["commandToBeRun"];
+		//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
+		echo '<h1 id="testRenderBlock"></h1>';
+		echo '
+		<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>
+		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus></form>';
+
+	}elseif($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
+		echo 'Welcome ' . $_POST["username"] . '<br>';
 		echo "<!--CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe-->
 
 		<!--MAIGNI GAHRIAGHGU the GIANIGN COMMMMMMMM-->
@@ -38,20 +36,14 @@
 
 	echo '<h1 id="testRenderBlock"></h1>';
 	echo '
-	<script>
-	function outputStuff(){
-	document.getElementById("EnterButton").style.visibility = "hidden";
-	document.getElementById("mainTextHeader").innerHTML = "Console";
-	document.getElementById("mainText").innerHTML = "<br>Enter Text Here<br><br>";
-	document.getElementById("fields").innerHTML = "<input type=\'text\' id=commandToBeRun onkeypress=\'return enterKeyListener(event)\'>";
-	enterKeyListener;
+	<div id="resultBox" name="resultBox"><br></div>
+	<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'></form>';
 
-	document.getElementById("commandRead").style.display = "block";}
-	</script>
-	';
-	echo '<div id="fields"><button type="button" id="EnterButton" onclick="outputStuff();">Enter Application</button></div>';
-	}
+}else{echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';}
+
+
 ?>
+
 </div>
 </body>
 </html>
