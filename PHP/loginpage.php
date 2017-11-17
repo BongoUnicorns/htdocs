@@ -19,19 +19,29 @@
 	<?php
 	if(isset($_POST["commandToBeRun"])){
 		$input = $_POST["commandToBeRun"];
+		$input = '"' . $input . '"';
+		chdir('../Shell');
+		$output = shell_exec('sh screenInterface.sh ' . 'jackische ' . $input);
+		$output = $input . ' ::   ' . $output;
 		//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
 		echo '<h1 id="testRenderBlock"></h1>';
 		echo '
-		<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>
+		<!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
+		<div id="resultBox" name="resultBox">' . $output . '<br><br></div>
 		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus></form>';
+
+
 
 	}elseif($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
 		echo 'Welcome ' . $_POST["username"] . '<br>';
-		echo "<!--CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe-->
+		echo "
+
+		<!--CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe-->
 
 		<!--MAIGNI GAHRIAGHGU the GIANIGN COMMMMMMMM-->
 
 		<!--STR8 ANKH DAVEEEEE.-->
+
 ";
 
 	echo '<h1 id="testRenderBlock"></h1>';

@@ -22,9 +22,13 @@ if [[ $Result == 1 ]]; then
 	"
 	sleep .05
 
-	cat /tmp/fifoout
+	Result="$(cat /tmp/fifoout)"
 
-	>/tmp/fifoout
+	echo $Result
+
+	rm -rf /tmp/fifoout
+
+	exit
 
 	#screen -r $Token
 
@@ -33,9 +37,15 @@ else #echo Attaching Screen;
 	"
 	sleep .05
 
-	cat /tmp/fifoout
+	Result="$(cat /tmp/fifoout)"
 
-	>/tmp/fifoout
+	echo $Result
+
+	rm -rf /tmp/fifoout
+
+	exit
 
 	#screen -r $Token
 fi
+
+exit
