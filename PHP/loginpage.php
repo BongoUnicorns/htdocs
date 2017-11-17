@@ -1,13 +1,14 @@
 <html>
 <head>
 	<script>
-	function enterKeyListener(){
-		document.getElementById("commandToBeRun").addEventListener("keydown", function(e){
-			if (!e) {var e = window.event;}
-			e.preventDefault();
-
-			if (e.keyCode == 13) { submitFunction(); }
-		},	false);
+	function enterKeyListener(event) {
+    if (event.which == 13 || event.keyCode == 13) {
+        //code to execute here
+				alert("HELLO");
+        return false;
+    }
+    return true;
+};
 	</script>
 
 	<title>Remote Access Tool</title>
@@ -39,13 +40,16 @@
 	echo '
 	<script>
 	function outputStuff(){
+	document.getElementById("EnterButton").style.visibility = "hidden";
 	document.getElementById("mainTextHeader").innerHTML = "Console";
 	document.getElementById("mainText").innerHTML = "<br>Enter Text Here<br><br>";
+	document.getElementById("fields").innerHTML = "<input type=\'text\' id=commandToBeRun onkeypress=\'return enterKeyListener(event)\'>";
+	enterKeyListener;
 
 	document.getElementById("commandRead").style.display = "block";}
 	</script>
 	';
-	echo '<button type="button" onclick="outputStuff();">Enter Application</button>';
+	echo '<div id="fields"><button type="button" id="EnterButton" onclick="outputStuff();">Enter Application</button></div>';
 	}
 ?>
 </div>
