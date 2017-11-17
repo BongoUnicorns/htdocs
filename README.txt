@@ -1,16 +1,1 @@
-<form action="commandToBeRun" method="post">
-	Run Command: <input type="text" id="commandToBeRun" name="commandToBeRun"><br>
-	<input type="submit">
-	</form>
-
-
-
-	<script>
-	function enterKeyListener(){
-		document.getElementById("commandToBeRun").addEventListener("keydown", function(e){
-			if (!e) {var e = window.event;}
-			e.preventDefault();
-
-			if (e.keyCode == 13) { submitFunction(); }
-		},	false);}
-	</script>
+This application intends to allow mobile access to a simple Bash shell on a remote server.  Logins are managed by a master administrator, and currently all logins have identical administrator-level permissions on the server.  To come is an in-browser replacement for VIM/Nano and a token-based instancing system to allow for simultaneous logins.
