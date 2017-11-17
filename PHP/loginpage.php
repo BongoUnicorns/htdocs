@@ -27,7 +27,7 @@
 		echo '<h1 id="testRenderBlock"></h1>';
 		echo '
 		<!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
-		<div id="resultBox" name="resultBox">' . $output . '<br><br></div>
+		<div id="resultBox" name="resultBox" style="word-wrap: break-word;">' . $output . '<br><br></div>
 		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus></form>';
 
 
