@@ -56,7 +56,7 @@ function UsersCreate($dbc){
 
   $query = $string1.$string2.$string3.$string4.$string5.$string99;
 
-  $result = mysqli_query($dbc, $query) or die('Query ffailed: ' .mysqli_error($dbc));
+  $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
   echo "Table AuthorizedUsers created . . . <br>";
   //echo "Would have run query: ".$query."<br>";
 }
@@ -70,7 +70,7 @@ function UsersCreate($dbc){
 
 	$query = $string1.$string2.$string3.$string4.$string99;
 
-    $result = mysqli_query($dbc, $query) or die('Query fffailed: ' .mysqli_error($dbc));
+    $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
     echo "Table TokenCacheCreate created . . . <br>";
     //echo "Would have run query: ".$query."<br>";
   }
