@@ -26,9 +26,9 @@ if($_POST["username"]=="admin"){
 		<h2>Management</h2>
 		<button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
 		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'>
-		<input type='submit' name='list' value='List Users'></input><br><br><br>
-		<input type='text' name='username'></input><br><br>
-    <input type='submit' name='delete' value='Delete User'></input><br>
+		<input type='submit' name='list' value='List Users'></input></form><br>
+		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm2'>
+		<input type='text' name='usernamesub'></input><br>
 		<input type='submit' name='add' value='Add User'></input>
 </form>";
 
@@ -68,18 +68,25 @@ echo "</table>";
 elseif(isset($_POST["userNumber"]) && isset($_POST["deleteUser"])){
 	$query = 'DELETE FROM `AuthorizedUsers` WHERE id = ' . $_POST["userNumber"] . ';';
 	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
-	echo "User number " . $_POST["userNumber"] . " will be deleted.";}
+	echo "User number " . $_POST["userNumber"] . " will be deleted.<br><br>
+
+	<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='UserListReturn'><input type='submit' name='list' value='List Users'></input></form>";}
 
 	//End Delete Users
 
-elseif(isset($_POST["delete"]) && $_POST["username"] != ""){
-	echo $_POST["username"]. " user will be deleted.";}
-elseif(isset($_POST["delete"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+
+elseif(isset($_POST["add"]) && $_POST["usernamesub"] != ""){
+
+	$query = "INSERT INTO `AuthorizedUsers`(user, token) VALUES ('" . $_POST['usernamesub'] . "', '43241233');";
+	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
 
 
-elseif(isset($_POST["add"]) && $_POST["username"] != ""){
-	echo $_POST["username"]. " user will be added.";}
-elseif(isset($_POST["add"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+	echo $_POST["usernamesub"]. " user will be added.
+
+	<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='UserListReturn2'><input type='submit' name='list' value='List Users'></input></form>";
+
+}
+elseif(isset($_POST["add"]) && $_POST["usernamesub"] == ""){echo "No user selected. Please return to the previous page.";}
 
 
 //END ACCOUNT MANAGEMENT PORTION
