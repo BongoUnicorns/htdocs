@@ -17,7 +17,36 @@
 
 
 	<?php
-	if(isset($_POST["commandToBeRun"])){
+if($_POST["username"]=="admin"){
+	if($_POST["password"]=="password"){
+		echo "
+		<h2>Management</h2>
+		<button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
+		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'>
+		<input type='text' name='username'></input><br><br>
+		<input type='submit' name='list' value='List'></input><br>
+    <input type='submit' name='delete' value='Delete'></input><br>
+		<input type='submit' name='add' value='Add'></input>
+</form>";
+
+	//echo "<script>window.location.replace(\"../index.html\");</script>";
+
+}else{
+	echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';
+}
+}
+
+//ACCOUNT MANAGEMENT PORTION!!!!
+
+elseif(isset($_POST["list"])){
+	echo $_POST["username"]. "List";}
+elseif(isset($_POST["delete"])){
+	echo $_POST["username"]. "Delete";}
+elseif(isset($_POST["add"])){
+	echo $_POST["username"]. "Add";}
+
+
+elseif(isset($_POST["commandToBeRun"])){
 		$input = $_POST["commandToBeRun"];
 		$input = '"' . $input . '"';
 		chdir('../Shell');
