@@ -88,7 +88,47 @@ elseif(isset($_POST["commandToBeRun"])){
 	<div id="resultBox" name="resultBox"><br></div>
 	<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'></form>';
 
-}else{echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';}
+}
+
+elseif($_POST["username"]=="admin"){
+		if($_POST["password"]=="password"){
+			echo "
+			<h2>Management</h2>
+			<button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
+			<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'>
+			<input type='submit' name='list' value='List Users'></input><br><br><br>
+			<input type='text' name='username'></input><br><br>
+	    <input type='submit' name='delete' value='Delete User'></input><br>
+			<input type='submit' name='add' value='Add User'></input>
+	</form>";
+
+		//echo "<script>window.location.replace(\"../index.html\");</script>";
+
+	}else{
+		echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';
+	}
+	}
+
+	//ACCOUNT MANAGEMENT PORTION!!!!
+
+	elseif(isset($_POST["list"])){
+		echo "List users.";}
+
+
+	elseif(isset($_POST["delete"]) && $_POST["username"] != ""){
+		echo $_POST["username"]. " user will be deleted.";}
+	elseif(isset($_POST["delete"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+
+
+	elseif(isset($_POST["add"]) && $_POST["username"] != ""){
+		echo $_POST["username"]. " user will be added.";}
+	elseif(isset($_POST["add"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+
+
+	//END ACCOUNT MANAGEMENT PORTION
+
+
+else{echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';}
 
 
 ?>

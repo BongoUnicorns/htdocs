@@ -18,11 +18,11 @@ if [[ $Result == 1 ]]; then
 	mkfifo /tmp/fifoout
 	screen -S $Token -p 0 -X stuff "cd
 	"
-	screen -S $Token -p 0 -X stuff \"$String >/tmp/fifoout
-	\"
+	screen -S $Token -p 0 -X stuff "$String >/tmp/fifoout
+	"
 	sleep .05
 
-	Result=\"$(cat /tmp/fifoout)\"
+	Result="$(cat /tmp/fifoout)"
 
 	echo $Result
 
@@ -33,11 +33,11 @@ if [[ $Result == 1 ]]; then
 	#screen -r $Token
 
 else #echo Attaching Screen;
-	screen -S $Token -p 0 -X stuff \"$String >/tmp/fifoout
-	\"
+	screen -S $Token -p 0 -X stuff "$String >/tmp/fifoout
+	"
 	sleep .05
 
-	Result=\"$(cat /tmp/fifoout)\"
+	Result="$(cat /tmp/fifoout)"
 
 	echo $Result
 
