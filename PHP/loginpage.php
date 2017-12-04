@@ -17,6 +17,9 @@
 
 
 	<?php
+
+$dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
+
 if($_POST["username"]=="admin"){
 	if($_POST["password"]=="password"){
 		echo "
@@ -38,9 +41,36 @@ if($_POST["username"]=="admin"){
 
 //ACCOUNT MANAGEMENT PORTION!!!!
 
+//UserList
 elseif(isset($_POST["list"])){
-	echo "List users.";}
+	$string1 = "(";
+	$string2 = "SELECT * FROM `AuthorizedUsers`";
+	$string99 = ");";
+	$query = $string1.$string2.$string99;
+	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
 
+	echo "User:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPassword:<br><table style='color:white;'>";
+
+	while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+echo "<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'><tr><td><input name='userNumber' type='text' value='" . $row['id'] . "' style='width:30px;' readonly></input></td><td>" . $row['user'] . "</td><td>" . $row['token'] . "</td>
+
+<td><input type='submit' name='deleteUser' value='Delete User'></input><br></form></td>
+
+
+</tr>";  //$row['index'] the index here is a field name
+}
+echo "</table>";
+
+}
+
+//Delete Users
+
+elseif(isset($_POST["userNumber"]) && isset($_POST["deleteUser"])){
+	$query = 'DELETE FROM `AuthorizedUsers` WHERE id = ' . $_POST["userNumber"] . ';';
+	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
+	echo "User number " . $_POST["userNumber"] . " will be deleted.";}
+
+	//End Delete Users
 
 elseif(isset($_POST["delete"]) && $_POST["username"] != ""){
 	echo $_POST["username"]. " user will be deleted.";}
