@@ -34,6 +34,7 @@
 
 	}elseif($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
 		echo 'Welcome ' . $_POST["username"] . '<br>';
+		echo ' <br>';
 		echo "
 
 		<!--CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe-->
@@ -44,6 +45,7 @@
 
 ";
 
+	echo 'Enter command here:';
 	echo '<h1 id="testRenderBlock"></h1>';
 	echo '
 	<div id="resultBox" name="resultBox"><br></div>
