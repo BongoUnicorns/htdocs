@@ -23,10 +23,10 @@ if($_POST["username"]=="admin"){
 		<h2>Management</h2>
 		<button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
 		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'>
+		<input type='submit' name='list' value='List Users'></input><br><br><br>
 		<input type='text' name='username'></input><br><br>
-		<input type='submit' name='list' value='List'></input><br>
-    <input type='submit' name='delete' value='Delete'></input><br>
-		<input type='submit' name='add' value='Add'></input>
+    <input type='submit' name='delete' value='Delete User'></input><br>
+		<input type='submit' name='add' value='Add User'></input>
 </form>";
 
 	//echo "<script>window.location.replace(\"../index.html\");</script>";
@@ -39,12 +39,20 @@ if($_POST["username"]=="admin"){
 //ACCOUNT MANAGEMENT PORTION!!!!
 
 elseif(isset($_POST["list"])){
-	echo $_POST["username"]. "List";}
-elseif(isset($_POST["delete"])){
-	echo $_POST["username"]. "Delete";}
-elseif(isset($_POST["add"])){
-	echo $_POST["username"]. "Add";}
+	echo "List users.";}
 
+
+elseif(isset($_POST["delete"]) && $_POST["username"] != ""){
+	echo $_POST["username"]. " user will be deleted.";}
+elseif(isset($_POST["delete"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+
+
+elseif(isset($_POST["add"]) && $_POST["username"] != ""){
+	echo $_POST["username"]. " user will be added.";}
+elseif(isset($_POST["add"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+
+
+//END ACCOUNT MANAGEMENT PORTION
 
 elseif(isset($_POST["commandToBeRun"])){
 		$input = $_POST["commandToBeRun"];
