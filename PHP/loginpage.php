@@ -17,15 +17,18 @@
 
 
 	<?php
+
+$dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
+
 if($_POST["username"]=="admin"){
 	if($_POST["password"]=="password"){
 		echo "
 		<h2>Management</h2>
 		<button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
 		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'>
-		<input type='submit' name='list' value='List Users'></input><br><br><br>
-		<input type='text' name='username'></input><br><br>
-    <input type='submit' name='delete' value='Delete User'></input><br>
+		<input type='submit' name='list' value='List Users'></input></form><br>
+		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm2'>
+		<input type='text' name='usernamesub'></input><br>
 		<input type='submit' name='add' value='Add User'></input>
 </form>";
 
@@ -38,18 +41,52 @@ if($_POST["username"]=="admin"){
 
 //ACCOUNT MANAGEMENT PORTION!!!!
 
+//UserList
 elseif(isset($_POST["list"])){
-	echo "List users.";}
+	$string1 = "(";
+	$string2 = "SELECT * FROM `AuthorizedUsers`";
+	$string99 = ");";
+	$query = $string1.$string2.$string99;
+	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
+
+	echo "User:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPassword:<br><table style='color:white;'>";
+
+	while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+echo "<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'><tr><td><input name='userNumber' type='text' value='" . $row['id'] . "' style='width:30px;' readonly></input></td><td>" . $row['user'] . "</td><td>" . $row['token'] . "</td>
+
+<td><input type='submit' name='deleteUser' value='Delete User'></input><br></form></td>
 
 
-elseif(isset($_POST["delete"]) && $_POST["username"] != ""){
-	echo $_POST["username"]. " user will be deleted.";}
-elseif(isset($_POST["delete"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+</tr>";  //$row['index'] the index here is a field name
+}
+echo "</table>";
+
+}
+
+//Delete Users
+
+elseif(isset($_POST["userNumber"]) && isset($_POST["deleteUser"])){
+	$query = 'DELETE FROM `AuthorizedUsers` WHERE id = ' . $_POST["userNumber"] . ';';
+	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
+	echo "User number " . $_POST["userNumber"] . " will be deleted.<br><br>
+
+	<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='UserListReturn'><input type='submit' name='list' value='List Users'></input></form>";}
+
+	//End Delete Users
 
 
-elseif(isset($_POST["add"]) && $_POST["username"] != ""){
-	echo $_POST["username"]. " user will be added.";}
-elseif(isset($_POST["add"]) && $_POST["username"] == ""){echo "No user selected. Please return to the previous page.";}
+elseif(isset($_POST["add"]) && $_POST["usernamesub"] != ""){
+
+	$query = "INSERT INTO `AuthorizedUsers`(user, token) VALUES ('" . $_POST['usernamesub'] . "', '43241233');";
+	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
+
+
+	echo $_POST["usernamesub"]. " user will be added.
+
+	<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='UserListReturn2'><input type='submit' name='list' value='List Users'></input></form>";
+
+}
+elseif(isset($_POST["add"]) && $_POST["usernamesub"] == ""){echo "No user selected. Please return to the previous page.";}
 
 
 //END ACCOUNT MANAGEMENT PORTION
