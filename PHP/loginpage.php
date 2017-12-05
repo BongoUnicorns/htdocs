@@ -26,7 +26,8 @@ if($_POST["username"]=="admin"){
 		<h2>Management</h2>
 		<button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
 		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'>
-		<input type='submit' name='list' value='List Users'></input></form><br>
+		<input type='submit' name='list' value='List Users'></input><br>
+		<input type='submit' name='listexpired' value='List Expired'></input></form><br>
 		<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm2'>
 		<input type='text' name='usernamesub'></input><br>
 		<input type='submit' name='add' value='Add User'></input>
@@ -42,6 +43,22 @@ if($_POST["username"]=="admin"){
 //ACCOUNT MANAGEMENT PORTION!!!!
 
 //UserList
+elseif(isset($_POST["listexpired"])){
+	$string1 = "(";
+	$string2 = "SELECT * FROM `DestroyedTokens`";
+	$string99 = ");";
+	$query = $string1.$string2.$string99;
+	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
+
+	echo "User:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspToken:<br><table style='color:white;'>";
+
+	while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+echo "<tr><td>" . $row['user'] . "</td><td>" . $row['token'] . "</td><td>" . $row['destructiontime'] . "</td></tr>";
+}
+echo "</table>";
+
+}
+
 elseif(isset($_POST["list"])){
 	$string1 = "(";
 	$string2 = "SELECT * FROM `AuthorizedUsers`";
@@ -62,13 +79,14 @@ echo "<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelFo
 echo "</table>";
 
 }
-
 //Delete Users
 
 elseif(isset($_POST["userNumber"]) && isset($_POST["deleteUser"])){
+
 	$query = 'DELETE FROM `AuthorizedUsers` WHERE id = ' . $_POST["userNumber"] . ';';
 	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
 	echo "User number " . $_POST["userNumber"] . " will be deleted.<br><br>
+
 
 	<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='UserListReturn'><input type='submit' name='list' value='List Users'></input></form>";}
 
