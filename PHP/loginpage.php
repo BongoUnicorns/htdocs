@@ -127,15 +127,23 @@ elseif(isset($_POST["commandToBeRun"])){
 		//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
 		echo '<h1 id="testRenderBlock"></h1>';
 
-		echo '
+		echo '<div id="resultBox" name="resultBox" style="word-wrap: break-word;height:70%;overflow:auto;">';
 
-<!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
+		$query1 = "SELECT * FROM `CommandsRun` WHERE tokenname = " . $tokenname . ";";
+		$result = mysqli_query($dbc, $query1) or die('No records found: ' .mysqli_error($dbc));
+
+while($row = mysqli_fetch_array($result)){
+
+		echo $row[0] . "<br><br>";
+
+	}
+		//. $output .
 
 
-		<div id="resultBox" name="resultBox" style="word-wrap: break-word;">' . $output . '<br><br></div>
+		echo '</div><br>
 
 		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus>
-		</form>';
+		</form><script>document.getElementById("resultBox").scrollTop = 9999999;</script>';
 
 
 //ACTUAL USER AUTHENTICATION PORTION
