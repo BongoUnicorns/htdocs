@@ -1,3 +1,6 @@
+//version December 5th 2017 Matt Mordeson and Jack Ische
+//This is the main PHP page for our project Remote Access Tool
+
 <html>
 <head>
 
@@ -15,6 +18,7 @@
 <div class='mainTextHeader' id="mainTextHeader">Application</div>
 <div class='mainText' id="mainText"></div>
 
+//connects to SQL table
 
 	<?php
 
