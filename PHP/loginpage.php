@@ -142,7 +142,7 @@ while($row = mysqli_fetch_array($result)){
 
 		echo '</div><br>
 
-		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus>
+		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' style=\'width:100%;\' onkeypress=\'return enterKeyListener(event)\' autofocus>
 		</form><script>document.getElementById("resultBox").scrollTop = 9999999;</script>';
 
 
@@ -161,20 +161,18 @@ while($row = mysqli_fetch_array($result)){
 $authenticated=false;
 	echo "<table>";
 	while($row = mysqli_fetch_array($result)){
-		//echo "<tr><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
 		if($_POST['username'] == $row[1] && $_POST['password'] == $row[2]){
-			//echo "TESTFFAAAAA";
 			$authenticated=true;
 			echo 'Enter command here:';
 			echo '<h1 id="testRenderBlock"></h1>';
 			echo '<div id="resultBox" name="resultBox"><br></div>
 
 
-			<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['password'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'>
+			<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['password'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' style=\'width:100%;\'>
 
 			</form>';
 
-			$queryX = "INSERT INTO `DestroyedTokens`(token, destructiontime) VALUES ('" . $_POST['password'] . "','" . time() . "');";
+			$queryX = "INSERT INTO `DestroyedTokens`(user, token, destructiontime) VALUES ('" . $_POST['username'] . "','" . $_POST['password'] . "','" . time() . "');";
 			$result = mysqli_query($dbc, $queryX) or die(mysqli_error($dbc));
 
 			$queryY = "DELETE FROM `AuthorizedUsers` WHERE token = " . $_POST["password"] . ";";

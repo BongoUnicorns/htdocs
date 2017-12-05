@@ -64,11 +64,12 @@ function UsersCreate($dbc){
   function TokenCacheCreate($dbc) {
     $string1 = "CREATE TABLE DestroyedTokens";
 	$string2 = "(";
-	$string3 = "token    VARCHAR(8), ";
-	$string4 = "destructiontime    VARCHAR(16)";
+	$string3 = "user    VARCHAR(30) NOT NULL, ";
+	$string4 = "token    VARCHAR(8) NOT NULL, ";
+	$string5 = "destructiontime    VARCHAR(16)";
 	$string99 = ");";
 
-	$query = $string1.$string2.$string3.$string4.$string99;
+	$query = $string1.$string2.$string3.$string4.$string5.$string99;
 
     $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
     echo "Table TokenCacheCreate created . . . <br>";
