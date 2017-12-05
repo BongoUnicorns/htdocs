@@ -77,7 +77,29 @@ elseif(isset($_POST["userNumber"]) && isset($_POST["deleteUser"])){
 
 elseif(isset($_POST["add"]) && $_POST["usernamesub"] != ""){
 
-	$query = "INSERT INTO `AuthorizedUsers`(user, token) VALUES ('" . $_POST['usernamesub'] . "', '43241233');";
+
+	$usrstring = $_POST['usernamesub'];
+	$usrstring = strtolower($usrstring);
+	$hash = strlen($usrstring);
+
+	$chararray = array(' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+	$firstchar=substr($usrstring,0,1);
+	$lastchar=substr($usrstring,$hashint-1,1);
+
+
+	$firstcharnum = array_search($firstchar,$chararray);
+	$lastcharnum = array_search($lastchar,$chararray);
+
+	$hash = pow(($hash * $firstcharnum * $lastcharnum),2);
+
+
+	$hash = $hash + time();
+	$hash = substr($hash,strlen($hash)-8,8);
+
+//CONCLUDES HASH FUNCTION
+
+
+	$query = "INSERT INTO `AuthorizedUsers`(user, token) VALUES ('" . $_POST['usernamesub'] . "','" . $hash . "');";  //replace 432... with $hash
 	$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
 
 
