@@ -92,17 +92,52 @@ elseif(isset($_POST["add"]) && $_POST["usernamesub"] == ""){echo "No user select
 //END ACCOUNT MANAGEMENT PORTION
 
 elseif(isset($_POST["commandToBeRun"])){
+	$tokenname = $_POST['tokenX'];
 		$input = $_POST["commandToBeRun"];
 		$input = '"' . $input . '"';
 		chdir('../Shell');
-		$output = shell_exec('sh screenInterface.sh ' . 'jackische ' . $input);
+		$output = shell_exec('sh screenInterface.sh X' . $tokenname . 'X ' . $input);
 		$output = $input . ' ::   ' . $output;
 		//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
 		echo '<h1 id="testRenderBlock"></h1>';
+
 		echo '
-		<!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
+
+<!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
+
+
 		<div id="resultBox" name="resultBox" style="word-wrap: break-word;">' . $output . '<br><br></div>
-		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus></form>';
+
+		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus>
+		</form>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //ACTUAL USER AUTHENTICATION PORTION
@@ -116,21 +151,31 @@ elseif(isset($_POST["commandToBeRun"])){
 	$query = $string1.$string2.$string3.$string4.$string99;
 	$result = mysqli_query($dbc, $query) or die('Credentials not recognized: ' .mysqli_error($dbc));
 
+$authenticated=false;
 	echo "<table>";
 	while($row = mysqli_fetch_array($result)){
 		//echo "<tr><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
 		if($_POST['username'] == $row[1] && $_POST['password'] == $row[2]){
 			//echo "TESTFFAAAAA";
-
+			$authenticated=true;
 			echo 'Enter command here:';
 			echo '<h1 id="testRenderBlock"></h1>';
-			echo '
-			<div id="resultBox" name="resultBox"><br></div>
-			<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'></form>';
+			echo '<div id="resultBox" name="resultBox"><br></div>
+
+
+			<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['password'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'>
+
+			</form>';
 
 		}
 	}
 	echo "</table>";
+
+	if($authenticated==false){
+
+		echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';
+
+	}
 }
 
 /*
