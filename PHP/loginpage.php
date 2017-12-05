@@ -132,7 +132,13 @@ elseif(isset($_POST["commandToBeRun"])){
 <!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
 
 
-		<div id="resultBox" name="resultBox" style="word-wrap: break-word;">' . $output . '<br><br></div>
+<div id="resultBox" name="resultBox" style="word-wrap: break-word;height:30%;overflow:auto;">'
+
+
+		. $output .
+
+
+		'<br><br></div>
 
 		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus>
 		</form>';
