@@ -92,20 +92,93 @@ elseif(isset($_POST["add"]) && $_POST["usernamesub"] == ""){echo "No user select
 //END ACCOUNT MANAGEMENT PORTION
 
 elseif(isset($_POST["commandToBeRun"])){
+	$tokenname = $_POST['tokenX'];
 		$input = $_POST["commandToBeRun"];
 		$input = '"' . $input . '"';
 		chdir('../Shell');
-		$output = shell_exec('sh screenInterface.sh ' . 'jackische ' . $input);
+		$output = shell_exec('sh screenInterface.sh X' . $tokenname . 'X ' . $input);
 		$output = $input . ' ::   ' . $output;
 		//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
 		echo '<h1 id="testRenderBlock"></h1>';
+
 		echo '
-		<!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
+
+<!--<div id="resultBox" name="resultBox">' . $_POST["commandToBeRun"] . '<br><br></div>-->
+
+
 		<div id="resultBox" name="resultBox" style="word-wrap: break-word;">' . $output . '<br><br></div>
-		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus></form>';
+
+		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus>
+		</form>';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ACTUAL USER AUTHENTICATION PORTION
+}elseif(isset($_POST["username"])){
+
+	$string1 = "SELECT * FROM `AuthorizedUsers` WHERE user = '";
+	$string2 = $_POST['username'];
+	$string3 = "' AND token = '";
+	$string4 = $_POST['password'];
+	$string99 = "';";
+	$query = $string1.$string2.$string3.$string4.$string99;
+	$result = mysqli_query($dbc, $query) or die('Credentials not recognized: ' .mysqli_error($dbc));
+
+$authenticated=false;
+	echo "<table>";
+	while($row = mysqli_fetch_array($result)){
+		//echo "<tr><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
+		if($_POST['username'] == $row[1] && $_POST['password'] == $row[2]){
+			//echo "TESTFFAAAAA";
+			$authenticated=true;
+			echo 'Enter command here:';
+			echo '<h1 id="testRenderBlock"></h1>';
+			echo '<div id="resultBox" name="resultBox"><br></div>
+
+
+			<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['password'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'>
+
+			</form>';
+
+		}
+	}
+	echo "</table>";
+
+	if($authenticated==false){
+
+		echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';
+
+	}
+}
+
+/*
 	}elseif($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
 		echo 'Welcome ' . $_POST["username"] . '<br>';
 		echo ' <br>';
@@ -118,6 +191,7 @@ elseif(isset($_POST["commandToBeRun"])){
 		<!--STR8 ANKH DAVEEEEE.-->
 
 ";
+
 
 	echo 'Enter command here:';
 	echo '<h1 id="testRenderBlock"></h1>';
@@ -145,7 +219,7 @@ elseif($_POST["username"]=="admin"){
 		echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';
 	}
 	}
-
+*/
 	//ACCOUNT MANAGEMENT PORTION!!!!
 
 	elseif(isset($_POST["list"])){
