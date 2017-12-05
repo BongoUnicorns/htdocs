@@ -1,11 +1,16 @@
+/*This file is now arbitrary, we originally wrote this as a javascript function
+but we decided that it would function better if we translated it into php. Lines
+78-99 of login.PHP do what this file was intended to do
+*/
+
 var d = new Date();
 //document.getElementById("date").innerHTML = d.getTime();
-//document.getElementById("tokenGenerator").innerHTML = username("isAString");
+//document.getElementById("tokenGenerator").innerHTML = tokenGen("isAString");
 function datefunc(){
   var dMilli = d.getTime();
   return dMilli;
 }
-function username(isAString) {
+function tokenGen(isAString) {
 var tokenVar = isAString;
 var tokenLength = isAString.length;
 var firstLetter = isAString.charAt(0);
@@ -18,4 +23,3 @@ var goodStuffStr = String(goodStuff);
 var lastEight = goodStuffStr.substr(goodStuffStr.length - 8);
 return lastEight;
 }
-//done
