@@ -146,7 +146,8 @@ while($row = mysqli_fetch_array($result)){
 		</form><script>document.getElementById("resultBox").scrollTop = 9999999;</script>';
 
 
-//ACTUAL USER AUTHENTICATION PORTION
+//ACTUAL USER AUTHENTICATION PORTION***
+
 }elseif(isset($_POST["username"])){
 
 	$string1 = "SELECT * FROM `AuthorizedUsers` WHERE user = '";
@@ -172,6 +173,14 @@ $authenticated=false;
 			<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['password'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'>
 
 			</form>';
+
+			$queryX = "INSERT INTO `DestroyedTokens`(token, destructiontime) VALUES ('" . $_POST['password'] . "','" . time() . "');";
+			$result = mysqli_query($dbc, $queryX) or die(mysqli_error($dbc));
+
+			$queryY = "DELETE FROM `AuthorizedUsers` WHERE token = " . $_POST["password"] . ";";
+			$result = mysqli_query($dbc, $queryY) or die(mysqli_error($dbc));
+
+			//ADD USER TOKEN TO DestroyedTokens to prevent second login
 
 		}
 	}

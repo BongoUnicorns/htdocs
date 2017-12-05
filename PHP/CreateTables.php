@@ -65,7 +65,7 @@ function UsersCreate($dbc){
     $string1 = "CREATE TABLE DestroyedTokens";
 	$string2 = "(";
 	$string3 = "token    VARCHAR(8), ";
-	$string4 = "destructiontime    TIMESTAMP";
+	$string4 = "destructiontime    VARCHAR(16)";
 	$string99 = ");";
 
 	$query = $string1.$string2.$string3.$string4.$string99;
