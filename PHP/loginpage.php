@@ -98,6 +98,10 @@ elseif(isset($_POST["commandToBeRun"])){
 		chdir('../Shell');
 		$output = shell_exec('sh screenInterface.sh X' . $tokenname . 'X ' . $input);
 		$output = $input . ' ::   ' . $output;
+
+		$query = "INSERT INTO `CommandsRun`(commandname, timerun, tokenname) VALUES ('" . $output . "','" . time() . "','" . $tokenname . "');";
+		$result = mysqli_query($dbc, $query) or die('Credentials not recognized: ' .mysqli_error($dbc));
+
 		//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
 		echo '<h1 id="testRenderBlock"></h1>';
 
@@ -110,34 +114,6 @@ elseif(isset($_POST["commandToBeRun"])){
 
 		<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' autofocus>
 		</form>';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //ACTUAL USER AUTHENTICATION PORTION
@@ -178,48 +154,6 @@ $authenticated=false;
 	}
 }
 
-/*
-	}elseif($_POST["username"]=="jackische" && $_POST["password"]=="1234"){
-		echo 'Welcome ' . $_POST["username"] . '<br>';
-		echo ' <br>';
-		echo "
-
-		<!--CONGRATULATION YOU HAVE BEEN SELECTED FOR YEAAAH BOIIIIIIIIIIIIIIIIIIIIe-->
-
-		<!--MAIGNI GAHRIAGHGU the GIANIGN COMMMMMMMM-->
-
-		<!--STR8 ANKH DAVEEEEE.-->
-
-";
-
-
-	echo 'Enter command here:';
-	echo '<h1 id="testRenderBlock"></h1>';
-	echo '
-	<div id="resultBox" name="resultBox"><br></div>
-	<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\'></form>';
-
-}
-
-elseif($_POST["username"]=="admin"){
-		if($_POST["password"]=="password"){
-			echo "
-			<h2>Management</h2>
-			<button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
-			<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm'>
-			<input type='submit' name='list' value='List Users'></input><br><br><br>
-			<input type='text' name='username'></input><br><br>
-	    <input type='submit' name='delete' value='Delete User'></input><br>
-			<input type='submit' name='add' value='Add User'></input>
-	</form>";
-
-		//echo "<script>window.location.replace(\"../index.html\");</script>";
-
-	}else{
-		echo 'Access denied.  Credentials not recognized.  Contact your systems administrator.';
-	}
-	}
-*/
 	//ACCOUNT MANAGEMENT PORTION!!!!
 
 	elseif(isset($_POST["list"])){

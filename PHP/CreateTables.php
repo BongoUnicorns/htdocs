@@ -34,7 +34,7 @@ function CommandsCreate($dbc) {
     $string1 = "CREATE TABLE CommandsRun";
 		$string2 = "(";
     $string3 = "commandname    TEXT, ";
-    $string4 = "timerun    TIMESTAMP, ";
+    $string4 = "timerun    VARCHAR(16), ";
     $string5 = "tokenname    VARCHAR(8) NOT NULL";
     $string99 = ");";
 
