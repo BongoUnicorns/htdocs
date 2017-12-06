@@ -15,15 +15,39 @@
 <div class='mainTextHeader' id="mainTextHeader">Application</div>
 <div class='mainText' id="mainText"></div>
 
-
 <?php
 
 $dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
 
-$query = 'DELETE FROM `AuthorizedUsers` WHERE id = ' . $_POST["userNumber"] . ';';
-$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
-echo "User number " . $_POST["userNumber"] . " will be deleted.<br><br>
+$usrstring = $_POST['usernamesub'];
+$usrstring = strtolower($usrstring);
+$hash = strlen($usrstring);
 
+$chararray = array(' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0');
+$firstchar=substr($usrstring,0,1);
+$lastchar=substr($usrstring,$hashint-1,1);
+
+
+$firstcharnum = array_search($firstchar,$chararray);
+$lastcharnum = array_search($lastchar,$chararray);
+
+$hash = pow(($hash * $firstcharnum * $lastcharnum),2);
+
+
+$hash = $hash + time();
+$hash = substr($hash,strlen($hash)-8,8);
+
+//CONCLUDES HASH FUNCTION
+
+
+$query = "INSERT INTO `AuthorizedUsers`(user, token) VALUES ('" . $_POST['usernamesub'] . "','" . $hash . "');";  //replace 432... with $hash
+$result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
+
+
+echo $_POST["usernamesub"]. " user will be added.
 
 <button onclick=\"window.location.href='list.php'\">Return to List</button>";
 ?>
+
+</body>
+</html>

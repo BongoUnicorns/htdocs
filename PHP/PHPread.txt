@@ -1,3 +1,0 @@
-maigni — gahriaghgu the gianign com!!!!!
-
-This script intends to interface with the shell script to pass and return shell arguments.

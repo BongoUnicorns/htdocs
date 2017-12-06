@@ -1,8 +1,7 @@
 <?php
-
-?>
-
-<?php
+session_start();
+session_unset();
+session_destroy();
 
 $dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
 
@@ -12,9 +11,13 @@ $query = "SELECT * FROM `AuthorizedUsers` WHERE user = '" . $_POST['username'] .
 $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
 $row = mysqli_fetch_array($result);
 
-if($_POST['username']=='admin' && $_POST['password']=='password'){
-  session_start();
-  $_SESSION['admin']='true';
+
+if($_POST['username']==""){
+
+echo "<script>window.location.href = 'usertools/permissionsrequest.html';</script>";
+
+
+}elseif($_POST['username']=='admin' && $_POST['password']=='password'){
   echo "Logging in...";
   echo "<script>window.location.href = 'adminsession.php';</script>";
 
@@ -22,11 +25,14 @@ if($_POST['username']=='admin' && $_POST['password']=='password'){
 
 elseif ($row[1] != $_POST['username']){
 
-    echo "<script>window.location.href = '../indexsession.html';</script>";
+    echo "<script>window.location.href = 'usertools/permissionsrequest.html';</script>";
 
 }else{
-  echo "Logging in...";
-  echo "<script>window.location.href = 'usersession.php';</script>";
+  session_start();
+  $_SESSION['username']=$_POST['username'];
+  $_SESSION['token']=$_POST['password'];
+  echo "Logging in..." . $_SESSION['username'] . $_SESSION['token'];
+  echo "<script>window.location.href = 'usertools/initialcommandspage.php';</script>";
 
 }
 
