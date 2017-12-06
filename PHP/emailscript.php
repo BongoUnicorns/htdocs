@@ -1,3 +1,13 @@
+<html>
+		<head>
+			<title>Remote Access Tool</title>
+<style type="text/css">
+</style>
+<link href="../../HTML/styleMain.css" rel="stylesheet" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="BodyTextBox">
 <?php
 
 //Simple check whether the input is a valid email address.
@@ -27,3 +37,6 @@ echo "<p>Email sent.  Redirecting... </p><script>setTimeout(function(){
  </script>";
 }
  ?>
+</div>
+</body>
+</html>
