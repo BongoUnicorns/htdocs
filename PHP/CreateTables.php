@@ -1,6 +1,6 @@
 <?php
 
-$dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
+
 
 echo <<<END
 <head>
@@ -17,9 +17,21 @@ echo <<<END
 <div class="BodyTextBox"><div class="BodyTitle"><a href="../index.html">Home</a></div><div class="mainTextHeader">Creating Tables.</div><div class="mainText">
 END;
 
+	$dbX = mysqli_connect("localhost", "root", "root");
+
+	$query = "CREATE DATABASE BashCommandsAppCache";
+	if(mysqli_query($dbX, $query)){
+	    echo "Database created successfully";
+	} else{
+	    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+	}
+
+	$dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
+
 TokenCacheCreate($dbc);
 UsersCreate($dbc);
 CommandsCreate($dbc);
+
 
 function connect() {
   $db = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
