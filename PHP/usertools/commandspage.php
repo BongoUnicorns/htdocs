@@ -23,7 +23,7 @@ session_start();
 
 $dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
 
-$tokenname = $_POST['tokenX'];
+$tokenname = $_SESSION['token'];
 	$input = $_POST["commandToBeRun"];
 	$input = '"' . $input . '"';
 	chdir('../../Shell');
@@ -51,7 +51,7 @@ while($row = mysqli_fetch_array($result)){
 
 	echo '</div><br>
 
-	<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_POST['tokenX'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' style=\'width:100%;\' onkeypress=\'return enterKeyListener(event)\' autofocus>
+	<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_SESSION['token'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' style=\'width:100%;\' onkeypress=\'return enterKeyListener(event)\' autofocus>
 	</form><script>document.getElementById("resultBox").scrollTop = 9999999;</script>';
 ?>
 

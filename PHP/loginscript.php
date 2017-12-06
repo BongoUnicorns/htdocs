@@ -11,7 +11,13 @@ $query = "SELECT * FROM `AuthorizedUsers` WHERE user = '" . $_POST['username'] .
 $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
 $row = mysqli_fetch_array($result);
 
-if($_POST['username']=='admin' && $_POST['password']=='password'){
+
+if($_POST['username']==""){
+
+echo "<script>window.location.href = 'usertools/permissionsrequest.html';</script>";
+
+
+}elseif($_POST['username']=='admin' && $_POST['password']=='password'){
   echo "Logging in...";
   echo "<script>window.location.href = 'adminsession.php';</script>";
 
@@ -19,7 +25,7 @@ if($_POST['username']=='admin' && $_POST['password']=='password'){
 
 elseif ($row[1] != $_POST['username']){
 
-    echo "<script>window.location.href = '../indexsession.html';</script>";
+    echo "<script>window.location.href = 'usertools/permissionsrequest.html';</script>";
 
 }else{
   session_start();

@@ -28,7 +28,7 @@ echo '<h1 id="testRenderBlock"></h1>';
 echo '<div id="resultBox" name="resultBox"><br></div>
 
 
-<form method=\'post\' action=\'commandspage.php\' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_SESSION['token'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' style=\'width:100%;\'>
+<form method=\'post\' action=\'commandspage.php\' name=\'commandForm\'><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' onkeypress=\'return enterKeyListener(event)\' style=\'width:100%;\'>
 
 </form>';
 
