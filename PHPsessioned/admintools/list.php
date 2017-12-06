@@ -36,5 +36,5 @@ echo "<form method='post' action='deleteuser.php' name='adminPanelForm'><tr><td>
 
 </tr>";  //$row['index'] the index here is a field name
 }
-echo "</table>";
+echo "</table> <button onclick=\"window.location.href='../adminsession.php'\">Return to Admin Panel</button>";
 ?>
