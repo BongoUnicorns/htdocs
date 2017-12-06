@@ -29,7 +29,7 @@ $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc)
 echo "User:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPassword:<br><table style='color:white;'>";
 
 while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-echo "<form method='post' action=" . \"deleteuser.php\" . " name='adminPanelForm'><tr><td><input name='userNumber' type='text' value='" . $row['id'] . "' style='width:30px;' readonly></input></td><td>" . $row['user'] . "</td><td>" . $row['token'] . "</td>
+echo "<form method='post' action='deleteuser.php' name='adminPanelForm'><tr><td><input name='userNumber' type='text' value='" . $row['id'] . "' style='width:30px;' readonly></input></td><td>" . $row['user'] . "</td><td>" . $row['token'] . "</td>
 
 <td><input type='submit' name='deleteUser' value='Delete User'></input><br></form></td>
 

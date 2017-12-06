@@ -25,5 +25,5 @@ $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc)
 echo "User number " . $_POST["userNumber"] . " will be deleted.<br><br>
 
 
-<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='UserListReturn'><input type='submit' name='list' value='List Users'></input></form>";
+<button onclick=\"window.location.href='list.php'\">Return to List</button>";
 ?>
