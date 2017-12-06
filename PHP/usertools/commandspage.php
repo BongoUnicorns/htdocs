@@ -29,8 +29,8 @@ $tokenname = $_SESSION['token'];
 	chdir('../../Shell');
 	$output = shell_exec('sh screenInterface.sh X' . $tokenname . 'X ' . $input);
 	$output = $input . ' ::   ' . $output;
-
-	$query = "INSERT INTO `CommandsRun`(commandname, timerun, tokenname) VALUES ('" . $output . "','" . time() . "','" . $tokenname . "');";
+	$outputclean = str_replace("'","*", $output);
+	$query = "INSERT INTO `CommandsRun`(commandname, timerun, tokenname) VALUES ('" . $outputclean . "','" . time() . "','" . $tokenname . "');";
 	$result = mysqli_query($dbc, $query) or die('Credentials not recognized: ' .mysqli_error($dbc));
 
 	//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
