@@ -24,9 +24,9 @@ session_start();
 echo "
 <h2>Management</h2>
 <button onclick=\"window.location.href='CreateTables.php'\">Create Tables</button><br><br>
-<button onclick=\"window.location.href='admintools/list.php'\">List Tables</button><br><br>
+<button onclick=\"window.location.href='admintools/list.php'\">List Users</button><br><br>
 <button onclick=\"window.location.href='admintools/listexpired.php'\">List Expired</button><br><br>
-<form method='post' action=" . $_SERVER['PHP_SELF'] . " name='adminPanelForm2'>
+<form method='post' action='admintools/add.php' name='adminPanelForm2'>
 <input type='text' name='usernamesub'></input><br>
 <input type='submit' name='add' value='Add User'></input>
 </form>";

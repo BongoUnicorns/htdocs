@@ -9,7 +9,7 @@
 </head>
 <body>
 <Flagtext class='Flag'><titleimg style='float:left'><a href='/index.html'><img src="../../Images/Logo.png" style='width:40px;height:auto'1;></img></a></titleimg>
-<h1><a href='../index.html' class='ResizingTitle'>Home</a></h1></Flagtext>
+<h1><a href='../../index.html' class='ResizingTitle'>Home</a></h1></Flagtext>
 <div id="swappableText">
 <div class='BodyTextBox'><div class='BodyTitle'><a href='/index.html'>Home</a></div>
 <div class='mainTextHeader' id="mainTextHeader">Application</div>

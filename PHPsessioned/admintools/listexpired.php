@@ -18,12 +18,20 @@
 
 <?php
 
+session_start();
+
 $dbc = mysqli_connect("localhost", "root", "root", "BashCommandsAppCache");
 
-$query = 'DELETE FROM `AuthorizedUsers` WHERE id = ' . $_POST["userNumber"] . ';';
+$string1 = "(";
+$string2 = "SELECT * FROM `DestroyedTokens`";
+$string99 = ");";
+$query = $string1.$string2.$string99;
 $result = mysqli_query($dbc, $query) or die('Query failed: ' .mysqli_error($dbc));
-echo "User number " . $_POST["userNumber"] . " will be deleted.<br><br>
 
+echo "User:&nbsp&nbspToken:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTime:<br><table style='color:white;'>";
 
-<button onclick=\"window.location.href='list.php'\">Return to List</button>";
+while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+echo "<tr><td>" . $row['user'] . "</td><td>" . $row['token'] . "</td><td>" . $row['destructiontime'] . "</td></tr>";
+}
+echo "</table><button onclick=\"window.location.href='../adminsession.php'\">Return to Admin Panel</button>";
 ?>
