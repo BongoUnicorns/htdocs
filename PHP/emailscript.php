@@ -4,7 +4,7 @@
 <style type="text/css">
 </style>
 <link href="../../HTML/styleMain.css" rel="stylesheet" type="text/css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body>
   <div class="BodyTextBox">

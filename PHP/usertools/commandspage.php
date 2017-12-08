@@ -7,7 +7,7 @@
 		<style type="text/css">
 		</style>
 		<link href="../../HTML/styleMain.css" rel="stylesheet" type="text/css">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body>
 <Flagtext class='Flag'><titleimg style='float:left'><a href='/index.html'><img src="../../Images/Logo.png" style='width:40px;height:auto'1;></img></a></titleimg>
@@ -36,7 +36,7 @@ $tokenname = $_SESSION['token'];
 	//echo '<script language="javascript">alert(\'SUBMITTING THE STUFF\')</script>';
 	echo '<h1 id="testRenderBlock"></h1>';
 
-	echo '<div id="resultBox" name="resultBox" style="word-wrap: break-word;height:70%;overflow:auto;">';
+	echo '<div id="resultBox" name="resultBox" style="word-wrap: break-word;height:57%;overflow:auto;">';
 
 	$query1 = "SELECT * FROM `CommandsRun` WHERE tokenname = " . $tokenname . ";";
 	$result = mysqli_query($dbc, $query1) or die('No records found: ' .mysqli_error($dbc));
@@ -51,7 +51,7 @@ while($row = mysqli_fetch_array($result)){
 
 	echo '</div><br>
 
-	<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_SESSION['token'] . '"><input type=\'text\' name=\'commandToBeRun\' id=\'commandToBeRun\' style=\'width:100%;\' onkeypress=\'return enterKeyListener(event)\' autofocus>
+	<form method=\'post\' action=' . $_SERVER['PHP_SELF'] . ' name=\'commandForm\'><input type="hidden" name="tokenX" value="' . $_SESSION['token'] . '"><input type=\'text\' autocorrect=\'off\' autocapitalize=\'none\' name=\'commandToBeRun\' id=\'commandToBeRun\' style=\'width:100%;\' onkeypress=\'return enterKeyListener(event)\' autofocus>
 	</form><script>document.getElementById("resultBox").scrollTop = 9999999;</script>';
 ?>
 
